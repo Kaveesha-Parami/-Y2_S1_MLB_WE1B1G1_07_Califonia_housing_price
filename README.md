@@ -182,14 +182,8 @@ Tests cover code-to-trained-label mapping, mapping permutation, numeric validati
 
 **Known artifact portability warning:** Loading this older XGBoost pickle with more recent XGBoost can emit a compatibility warning even if prediction works. For a production release, re-export with the original compatible environment, record Python/XGBoost/scikit-learn package versions and a model SHA-256, then run a golden prediction test after upgrading. The included `requirements.txt` specifies supported version ranges but does not reconstruct the *original* training environment.
 
-## Security, operations, and remaining deployment work
 
-- **Uploads:** Only UTF-8 CSV is exposed in the UI; byte-size and row limits, explicit field-count validation, no arbitrary user file paths, and no loading untrusted pickles. Streamlit's `file_uploader(type=...)` is not itself a security boundary: content is explicitly parsed and validated. CSV exports neutralize potential spreadsheet formulas in string cells. Browser UI error details are suppressed.
-- **Concurrency:** Background prediction uses 2 workers and a maximum of 4 submitted jobs; tasks run without Streamlit calls. `st.cache_resource` retains the trusted model and worker pool; `st.cache_data` caches only a bundled public CSV example; `lru_cache` caches small code-to-vector transforms, not private uploaded records.
-- **Logging:** Logs events, counts and failure stack traces to standard output; does not intentionally log uploaded data or raw numerical values. Configure central monitoring and log retention in your deployment.
-- **Guardrails:** User values and calculated ratios must be finite, ratio denominators must be positive, category codes are not rounded, and the model receives the exact saved feature order. The two unavailable internal model inputs use explicit bundled sample defaults until a complete fitted preprocessing pipeline is available.
-- **Deployment:** Put behind HTTPS with authentication/authorization if prediction data is sensitive. Add request/session quotas and CSRF-aware reverse proxy configuration, secrets management, robust model artifact supply-chain checks, tests at runtime pin upgrades, observability, drift monitoring, and a durable async queue for high concurrency. Do not expose this project to untrusted public traffic without those controls.
-- **ML caveats:** Training notebook displayed approximately `R² = 0.8369` and `RMSE = 46,826.69` on its test evaluation. These are notebook outputs, **not a prospective accuracy guarantee**. Verify partition methodology, training leakage risks, out-of-distribution inputs, and model bias before business/financial use.
+
 
 ### Possible next improvement
 
