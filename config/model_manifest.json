@@ -1,0 +1,7 @@
+{
+  "model_path": "models/xgboost_top_features_model.joblib",
+  "feature_names_path": "models/xgboost_top_feature_names.joblib",
+  "input_strategy": "one_hot",
+  "target_name": "median_house_value",
+  "description": "California housing XGBRegressor; expects already engineered numeric features"
+}

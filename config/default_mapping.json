@@ -1,0 +1,16 @@
+{
+  "code_to_label": {
+    "0": "<1H OCEAN",
+    "1": "INLAND",
+    "2": "ISLAND",
+    "3": "NEAR BAY",
+    "4": "NEAR OCEAN"
+  },
+  "embeddings": {
+    "<1H OCEAN": [0.9, 0.2, 0.3],
+    "INLAND": [0.0, 1.0, 0.0],
+    "ISLAND": [1.0, 0.0, 1.0],
+    "NEAR BAY": [0.7, 0.3, 0.6],
+    "NEAR OCEAN": [1.0, 0.1, 0.5]
+  }
+}

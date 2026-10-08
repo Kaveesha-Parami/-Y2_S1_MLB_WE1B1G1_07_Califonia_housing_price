@@ -1,0 +1,14 @@
+[server]
+maxUploadSize = 10
+maxMessageSize = 20
+enableXsrfProtection = true
+enableCORS = true
+
+[client]
+showErrorDetails = "none"
+
+[theme]
+base = "dark"
+baseFontSize = 18
+headingFontSizes = ["3rem", "2.25rem", "1.75rem"]
+codeFontSize = "0.95rem"
